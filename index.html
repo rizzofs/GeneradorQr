@@ -54,21 +54,225 @@
           Herramienta gratuita
         </span>
         <h1>Generá tu <span class="text-gradient">código QR</span> en segundos.</h1>
-        <p>Pegá un link, sumá tu logo si querés y descargalo en alta calidad. Sin registro y sin que tus datos salgan de tu navegador.</p>
+        <p>Links, Wi-Fi, WhatsApp, contactos, eventos y más. Sumá tu logo si querés y descargalo en alta calidad, 100% en tu navegador.</p>
       </div>
     </section>
 
     <!-- Generador -->
     <section class="container tool">
       <form id="qr-form" class="card" autocomplete="off" novalidate>
+        <!-- Selector de tipo de QR -->
         <div class="field">
-          <label for="url" class="label">Link o texto <span class="req">*</span></label>
-          <div class="input-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            <input id="url" name="url" type="text" class="input" placeholder="https://rzcore.dev" required />
+          <span class="label">Tipo de QR</span>
+          <div class="type-tabs" role="tablist" aria-label="Tipo de código QR">
+            <button type="button" role="tab" class="type-tab is-active" data-type="url" aria-selected="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <span>Link</span>
+            </button>
+            <button type="button" role="tab" class="type-tab" data-type="wifi" aria-selected="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>
+              <span>Wi-Fi</span>
+            </button>
+            <button type="button" role="tab" class="type-tab" data-type="whatsapp" aria-selected="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span>WhatsApp</span>
+            </button>
+            <button type="button" role="tab" class="type-tab" data-type="vcard" aria-selected="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>Contacto</span>
+            </button>
+            <button type="button" role="tab" class="type-tab" data-type="event" aria-selected="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+              <span>Evento</span>
+            </button>
+            <button type="button" role="tab" class="type-tab" data-type="email" aria-selected="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>Email</span>
+            </button>
+            <button type="button" role="tab" class="type-tab" data-type="geo" aria-selected="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Ubicación</span>
+            </button>
+            <button type="button" role="tab" class="type-tab" data-type="text" aria-selected="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/></svg>
+              <span>Texto</span>
+            </button>
           </div>
-          <small class="hint" id="url-hint">El QR se actualiza mientras escribís.</small>
         </div>
+
+        <!-- Panel: Link / URL -->
+        <div class="type-panel" data-panel="url">
+          <div class="field">
+            <label for="url" class="label">Dirección web (URL) <span class="req">*</span></label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <input id="url" name="url" type="url" class="input" placeholder="https://rzcore.dev" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel: Wi-Fi -->
+        <div class="type-panel" data-panel="wifi" hidden>
+          <div class="field">
+            <label for="wifi-ssid" class="label">Nombre de la red (SSID) <span class="req">*</span></label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>
+              <input id="wifi-ssid" type="text" class="input" placeholder="Ej: CentroEstudiantes_WiFi" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" id="wifi-pass-field">
+              <label for="wifi-pass" class="label">Contraseña</label>
+              <div class="input-action">
+                <input id="wifi-pass" type="password" class="input input--plain" placeholder="Contraseña del Wi-Fi" />
+                <button type="button" id="wifi-toggle-pass" class="icon-btn" aria-label="Mostrar u ocultar contraseña" title="Mostrar/ocultar">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="wifi-auth" class="label">Seguridad</label>
+              <select id="wifi-auth" class="input input--plain select">
+                <option value="WPA" selected>WPA / WPA2 / WPA3</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">Abierta (sin clave)</option>
+              </select>
+            </div>
+          </div>
+          <label class="checkbox">
+            <input id="wifi-hidden" type="checkbox" />
+            <span>Es una red oculta</span>
+          </label>
+        </div>
+
+        <!-- Panel: WhatsApp -->
+        <div class="type-panel" data-panel="whatsapp" hidden>
+          <div class="field">
+            <label for="wa-phone" class="label">Número con código de país <span class="req">*</span></label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <input id="wa-phone" type="tel" class="input" placeholder="Ej: +54 9 11 2233-4455" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="wa-msg" class="label">Mensaje predefinido <span class="opt">(opcional)</span></label>
+            <textarea id="wa-msg" rows="3" class="input input--plain textarea" placeholder="Hola! Quería hacer una consulta sobre..."></textarea>
+          </div>
+        </div>
+
+        <!-- Panel: Contacto (vCard) -->
+        <div class="type-panel" data-panel="vcard" hidden>
+          <div class="row">
+            <div class="field">
+              <label for="vc-first" class="label">Nombre <span class="req">*</span></label>
+              <input id="vc-first" type="text" class="input input--plain" placeholder="Juan" />
+            </div>
+            <div class="field">
+              <label for="vc-last" class="label">Apellido</label>
+              <input id="vc-last" type="text" class="input input--plain" placeholder="Pérez" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="vc-tel" class="label">Teléfono</label>
+              <input id="vc-tel" type="tel" class="input input--plain" placeholder="+54 9 11 2233-4455" />
+            </div>
+            <div class="field">
+              <label for="vc-email" class="label">Email</label>
+              <input id="vc-email" type="email" class="input input--plain" placeholder="contacto@ejemplo.com" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="vc-org" class="label">Organización</label>
+              <input id="vc-org" type="text" class="input input--plain" placeholder="Centro de Estudiantes" />
+            </div>
+            <div class="field">
+              <label for="vc-title" class="label">Cargo / Rol</label>
+              <input id="vc-title" type="text" class="input input--plain" placeholder="Secretaría Académica" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="vc-url" class="label">Sitio web <span class="opt">(opcional)</span></label>
+            <input id="vc-url" type="url" class="input input--plain" placeholder="https://rzcore.dev" />
+          </div>
+        </div>
+
+        <!-- Panel: Evento (Calendario) -->
+        <div class="type-panel" data-panel="event" hidden>
+          <div class="field">
+            <label for="ev-title" class="label">Título del evento <span class="req">*</span></label>
+            <input id="ev-title" type="text" class="input input--plain" placeholder="Ej: Charla de Ingreso / Asamblea" />
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="ev-start" class="label">Inicio <span class="req">*</span></label>
+              <input id="ev-start" type="datetime-local" class="input input--plain" />
+            </div>
+            <div class="field">
+              <label for="ev-end" class="label">Fin <span class="opt">(opcional)</span></label>
+              <input id="ev-end" type="datetime-local" class="input input--plain" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="ev-loc" class="label">Ubicación <span class="opt">(opcional)</span></label>
+            <input id="ev-loc" type="text" class="input input--plain" placeholder="Ej: Aula Magna, Sede Central" />
+          </div>
+          <div class="field">
+            <label for="ev-desc" class="label">Descripción <span class="opt">(opcional)</span></label>
+            <textarea id="ev-desc" rows="2" class="input input--plain textarea" placeholder="Detalles o temario del evento..."></textarea>
+          </div>
+        </div>
+
+        <!-- Panel: Email -->
+        <div class="type-panel" data-panel="email" hidden>
+          <div class="field">
+            <label for="em-to" class="label">Destinatario (Email) <span class="req">*</span></label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <input id="em-to" type="email" class="input" placeholder="mesa@universidad.edu.ar" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="em-sub" class="label">Asunto <span class="opt">(opcional)</span></label>
+            <input id="em-sub" type="text" class="input input--plain" placeholder="Consulta de inscripción" />
+          </div>
+          <div class="field">
+            <label for="em-body" class="label">Mensaje <span class="opt">(opcional)</span></label>
+            <textarea id="em-body" rows="3" class="input input--plain textarea" placeholder="Hola, escribo para solicitar..."></textarea>
+          </div>
+        </div>
+
+        <!-- Panel: Ubicación -->
+        <div class="type-panel" data-panel="geo" hidden>
+          <div class="field">
+            <label for="geo-query" class="label">Dirección o lugar en Google Maps</label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <input id="geo-query" type="text" class="input" placeholder="Ej: Av. Corrientes 1234, CABA" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="geo-lat" class="label">Latitud <span class="opt">(o coordenadas)</span></label>
+              <input id="geo-lat" type="text" inputmode="decimal" class="input input--plain" placeholder="-34.6037" />
+            </div>
+            <div class="field">
+              <label for="geo-lng" class="label">Longitud</label>
+              <input id="geo-lng" type="text" inputmode="decimal" class="input input--plain" placeholder="-58.3816" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel: Texto libre -->
+        <div class="type-panel" data-panel="text" hidden>
+          <div class="field">
+            <label for="raw-text" class="label">Texto o código <span class="req">*</span></label>
+            <textarea id="raw-text" rows="4" class="input input--plain textarea" placeholder="Escribí cualquier texto, credencial, nota o código..."></textarea>
+          </div>
+        </div>
+
+        <small class="hint" id="url-hint">El QR se actualiza mientras escribís.</small>
 
         <div class="field">
           <span class="label">Logo <span class="opt">(opcional)</span></span>

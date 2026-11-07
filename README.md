@@ -8,6 +8,15 @@ Replica `generate_qr.py`: corrección de errores **H**, 20 px por módulo, borde
 logo centrado sobre un recuadro del color de fondo (~25% del ancho).
 
 Además:
+- **8 tipos de QR soportados**:
+  - **Link (URL)**: páginas web con aviso inteligente de `https://`.
+  - **Wi-Fi**: conexión automática configurando SSID, contraseña, seguridad (`WPA/WPA2/WPA3`, `WEP`, abierta) y red oculta.
+  - **WhatsApp**: abre un chat directo (`wa.me`) con mensaje predefinido opcional.
+  - **Contacto (vCard 3.0)**: agenda nombre, apellido, teléfono, email, organización, cargo y web.
+  - **Evento (iCalendar / VEVENT)**: agenda un evento en el calendario con fecha/hora de inicio y fin, ubicación y descripción.
+  - **Email (`mailto:`)**: prepara un correo con destinatario, asunto y cuerpo del mensaje.
+  - **Ubicación**: abre coordenadas (`geo:`) o búsqueda directa en Google Maps.
+  - **Texto libre**: para notas, códigos, entradas o credenciales sin conexión.
 - Vista previa en vivo, colores personalizables y tamaño de logo ajustable.
 - Logo opcional: click, arrastrar y soltar, o pegar con Ctrl+V.
 - **Verificación automática**: cada QR se decodifica en el navegador (jsQR). Si el logo
